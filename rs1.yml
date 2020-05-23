@@ -1,16 +1,18 @@
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
-     name: myweb-rss
+     name: myweb-rs
 spec:
       replicas: 3
       selector:
-          matchExpressions:
-              - { key: env, operator: In,values: [ production ] }
-              - { key: region, operator: In, values: [ IN ] }
+        matchLabels:
+            env: production
+#          matchExpressions:
+#             - { key: env, operator: In, values: [ production ] }
+ #            - { key: region, operator: In, values: [ IN ] }
       template:
          metadata:
-            name: myweb-prod
+            name: myweb-pod
             labels:
               env: production
               dc: "2"
